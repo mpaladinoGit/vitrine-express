@@ -21,24 +21,6 @@ window.PRODUTOS_INICIAIS = [
     "linkAfiliado": "https://meli.la/1QM5CM3"
   },
   {
-    "id": 5,
-    "codigo": "05",
-    "titulo": "Escova Secadora e Modeladora 4 em 1 Íons Revestimento Cerâmico 1300W Bivolt",
-    "categoria": "beleza",
-    "categoriaNome": "Beleza & Cuidados",
-    "plataforma": "amazon",
-    "plataformaNome": "Amazon",
-    "precoAntigo": 199.9,
-    "precoAtual": 114.9,
-    "parcelamento": "em até 4x de R$ 28,72 sem juros",
-    "avaliacao": "4.9",
-    "vendidos": "+4 mil vendidos",
-    "destaqueVideo": true,
-    "freteGratis": true,
-    "imagem": "https://images.unsplash.com/photo-1522338140262-f46f5913618a?auto=format&fit=crop&w=700&q=80",
-    "linkAfiliado": "https://www.amazon.com.br"
-  },
-  {
     "id": 6,
     "codigo": "06",
     "titulo": "Aspirador de Pó Portátil Automotivo e Residencial Sem Fio Recarregável Turbo",
