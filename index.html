@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vitrine Express — Os Melhores Achadinhos e Ofertas Oficiais</title>
+  <meta
+    name="description"
+    content="Encontre os produtos dos nossos vídeos e as melhores ofertas verificadas no Mercado Livre, Shopee e Amazon com compra 100% segura."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css?v=7" />
+</head>
+<body>
+  <!-- Barra de Confiança -->
+  <div class="trust-bar">
+    🔒 <span>Compra 100% Segura:</span> Você escolhe aqui e finaliza o pagamento direto no app oficial do <span>Mercado Livre, Shopee ou Amazon</span>.
+  </div>
+
+  <!-- Cabeçalho Principal -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-top">
+        <a href="#" class="brand-logo">
+          <div class="logo-icon">⚡</div>
+          <div class="brand-text">
+            <h1>Vitrine <span>Express</span></h1>
+            <p>Curadoria Oficial de Ofertas & Achadinhos Úteis</p>
+          </div>
+        </a>
+
+        <div class="header-actions" id="adminHeaderActions">
+          <button type="button" id="openAdminBtn" class="btn-admin">
+            ⚡ Cadastrar por Link (1 Clique)
+          </button>
+        </div>
+      </div>
+
+      <!-- Busca por Número do Vídeo ou Nome -->
+      <div class="search-hero">
+        <label for="searchInput" class="search-label">
+          🔎 Viu algum produto no nosso <strong>Instagram ou TikTok</strong>? Digite o <strong>Número (ex: 01, 02)</strong> ou o nome:
+        </label>
+        <div class="search-box-wrapper">
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Digite o número do produto (ex: 01) ou nome (ex: airfryer, fone, aspirador)..."
+            autocomplete="off"
+          />
+          <button type="button" id="clearSearchBtn" class="btn-clear-search">Limpar ✕</button>
+        </div>
+
+        <div id="quickNumbers" class="quick-numbers"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Filtros de Categoria e Loja -->
+  <section class="filters-section">
+    <div class="container">
+      <div class="filters-row">
+        <div class="category-pills" role="tablist" aria-label="Categorias">
+          <button type="button" class="cat-btn active" data-cat="todos">🔥 Todos os Achados</button>
+          <button type="button" class="cat-btn" data-cat="casa">🏠 Casa & Cozinha</button>
+          <button type="button" class="cat-btn" data-cat="eletronicos">🎧 Eletrônicos</button>
+          <button type="button" class="cat-btn" data-cat="beleza">✨ Beleza & Cuidados</button>
+          <button type="button" class="cat-btn" data-cat="ferramentas">🔧 Ferramentas & Auto</button>
+        </div>
+
+        <div class="platform-filter" aria-label="Filtrar por loja oficial">
+          <button type="button" class="plat-btn active" data-plat="todas">Todas as Lojas</button>
+          <button type="button" class="plat-btn" data-plat="mercadolivre">Mercado Livre</button>
+          <button type="button" class="plat-btn" data-plat="shopee">Shopee</button>
+          <button type="button" class="plat-btn" data-plat="amazon">Amazon</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catálogo de Produtos -->
+  <main class="catalog-section">
+    <div class="container">
+      <div class="results-info">
+        <span id="resultsCount">Carregando ofertas...</span>
+        <span>⚡ Preços promocionais sujeitos ao estoque das lojas oficiais</span>
+      </div>
+
+      <div id="productsGrid" class="products-grid"></div>
+
+      <div id="emptyState" class="empty-state">
+        <h3>Nenhum produto encontrado com esse filtro</h3>
+        <p>Tente digitar outro número ou clique abaixo para ver todas as ofertas.</p>
+        <button type="button" id="btnResetFilters" class="btn-submit" style="max-width: 240px;">
+          Ver Todos os Produtos
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Seção de Segurança / Explicação para o Cliente -->
+  <section class="how-it-works">
+    <div class="container">
+      <h2>Por que comprar através da Vitrine Express?</h2>
+      <div class="how-grid">
+        <div class="how-card">
+          <h4>🎯 1. Garimpo de Ofertas Reais</h4>
+          <p>
+            Nós filtramos apenas produtos com avaliações altas (acima de 4.7 estrelas) e vendedores confiáveis.
+          </p>
+        </div>
+        <div class="how-card">
+          <h4>🛡️ 2. Pagamento na Loja Oficial</h4>
+          <p>
+            Ao clicar no produto, você é direcionado para o aplicativo oficial do Mercado Livre, Shopee ou Amazon. Nós nunca pedimos dados do seu cartão.
+          </p>
+        </div>
+        <div class="how-card">
+          <h4>🚚 3. Entrega e Garantia Oficial</h4>
+          <p>
+            Toda a entrega, rastreio e garantia de devolução grátis são assegurados diretamente pelas plataformas oficiais.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        <strong>Vitrine Express</strong> — Portal de Curadoria e Indicação de Ofertas.
+      </p>
+      <p style="margin-top: 6px;">
+        Participamos dos Programas de Associados e Afiliados do Mercado Livre, Shopee e Amazon. Ao comprar pelos nossos links, podemos receber uma pequena comissão sem nenhum custo extra para você.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Modal: Importador Automático por Link -->
+  <div id="adminModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>⚡ Cadastrar Produto por Link</h3>
+        <button type="button" id="closeAdminBtn" class="btn-close" aria-label="Fechar">✕</button>
+      </div>
+
+      <!-- Caixa de Importação Automática -->
+      <div class="auto-import-box">
+        <label for="inputLink">
+          1. Cole aqui o link do produto (Mercado Livre, Shopee ou Amazon):
+        </label>
+        <div class="auto-import-row">
+          <input
+            type="text"
+            id="inputLink"
+            placeholder="Cole o link aqui (ex: https://mercadolivre.com/...)"
+          />
+          <button type="button" id="btnPuxarDados" class="btn-fetch">
+            🔍 Puxar Dados
+          </button>
+        </div>
+        <div id="extractStatus" class="extract-status"></div>
+      </div>
+
+      <form id="formNovoProduto">
+        <!-- Pré-visualização rápida da foto puxada -->
+        <div id="previewBox" class="preview-box" style="display: none;">
+          <img id="previewImg" src="" alt="Prévia do produto" />
+          <div class="preview-info">
+            <span id="previewBadge" class="preview-badge">Foto identificada!</span>
+            <small>Se quiser, você pode ajustar qualquer campo abaixo antes de salvar.</small>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="inputCodigo">Número no Vídeo (ex: 09)</label>
+            <input type="text" id="inputCodigo" required placeholder="09" />
+          </div>
+          <div class="form-group">
+            <label for="inputPlataforma">Loja Oficial</label>
+            <select id="inputPlataforma">
+              <option value="mercadolivre">Mercado Livre</option>
+              <option value="shopee">Shopee</option>
+              <option value="amazon">Amazon</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputTitulo">Nome do Produto</label>
+          <input
+            type="text"
+            id="inputTitulo"
+            required
+            placeholder="Será preenchido automaticamente pelo link..."
+          />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="inputCategoria">Categoria</label>
+            <select id="inputCategoria">
+              <option value="casa">Casa & Cozinha</option>
+              <option value="eletronicos">Eletrônicos</option>
+              <option value="beleza">Beleza & Cuidados</option>
+              <option value="ferramentas">Ferramentas & Auto</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="inputPrecoAtual">Preço em Oferta (R$)</label>
+            <input type="number" step="0.01" id="inputPrecoAtual" required placeholder="59.90" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="inputPrecoAntigo">Preço Antigo Riscado (R$)</label>
+            <input type="number" step="0.01" id="inputPrecoAntigo" placeholder="99.90" />
+          </div>
+          <div class="form-group">
+            <label for="inputImagem">Link da Foto do Produto</label>
+            <input type="url" id="inputImagem" placeholder="https://..." />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit">Salvar Definitivo na Vitrine ⚡</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Gerador de Vídeo com IA (TikTok / Instagram Reels) -->
+  <div id="videoModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-card modal-video-card">
+      <div class="modal-header">
+        <h3>🎬 Gerador de Vídeo com IA (TikTok & Reels)</h3>
+        <button type="button" id="closeVideoBtn" class="btn-close" aria-label="Fechar">✕</button>
+      </div>
+
+      <div class="video-generator-body">
+        <div class="form-group">
+          <label for="selectVozIA">1. Escolha a Voz da Narração (Português Brasil):</label>
+          <select id="selectVozIA">
+            <option value="pt-BR-FranciscaNeural">🎙️ Voz Feminina — Francisca (Jovem e Dinâmica)</option>
+            <option value="pt-BR-AntonioNeural">🎙️ Voz Masculina — Antônio (Locutor Comercial)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="inputRoteiroIA">2. Fala da IA no Vídeo (você pode editar se quiser):</label>
+          <textarea id="inputRoteiroIA" rows="3" class="textarea-ia"></textarea>
+        </div>
+
+        <button type="button" id="btnGerarVideoAgora" class="btn-generate-video">
+          🎬 Gerar Vídeo Vertical (.MP4) com Voz IA
+        </button>
+
+        <div id="videoStatusMsg" class="extract-status"></div>
+
+        <!-- Resultado do Vídeo Gerado -->
+        <div id="videoResultArea" class="video-result-area" style="display: none;">
+          <div class="video-player-col">
+            <video id="videoPreviewPlayer" controls playsinline></video>
+          </div>
+
+          <div class="video-actions-col">
+            <a id="btnDownloadVideo" href="#" download class="btn-action-dl">
+              ⬇️ Baixar Vídeo (.MP4)
+            </a>
+            <button type="button" id="btnAbrirPastaVideos" class="btn-action-folder">
+              📂 Abrir Pasta dos Vídeos no Computador
+            </button>
+
+            <div class="caption-box">
+              <label for="inputLegendaIA">📋 Legenda Pronta + Hashtags (TikTok / Instagram):</label>
+              <textarea id="inputLegendaIA" rows="6" class="textarea-ia"></textarea>
+              <button type="button" id="btnCopiarLegenda" class="btn-copy-caption">
+                📋 Copiar Legenda Pronta
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="produtos.js?v=7"></script>
+  <script src="app.js?v=7"></script>
+</body>
+</html>
