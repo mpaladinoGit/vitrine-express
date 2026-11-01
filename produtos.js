@@ -21,24 +21,6 @@ window.PRODUTOS_INICIAIS = [
     "linkAfiliado": "https://meli.la/1QM5CM3"
   },
   {
-    "id": 1793567573868,
-    "codigo": "09",
-    "titulo": "Hidratante Facial Neutrogena Hydro Boost Water Gel 50G",
-    "categoria": "beleza",
-    "categoriaNome": "Beleza & Cuidados",
-    "plataforma": "mercadolivre",
-    "plataformaNome": "Mercado Livre",
-    "precoAntigo": 71.31,
-    "precoAtual": 55.71,
-    "parcelamento": "Oferta selecionada na Vitrine Express",
-    "avaliacao": "4.9",
-    "vendidos": "Destaque da Vitrine",
-    "destaqueVideo": true,
-    "freteGratis": true,
-    "imagem": "https://i.zst.com.br/thumbs/45/1e/10/1966154644.jpg",
-    "linkAfiliado": "https://www.mercadolivre.com.br/hidratante-facial-neutrogena-hydro-boost-water-gel-50g/p/MLB19899495?pdp_filters=item_id%3AMLB3138506537#polycard_client=search-desktop&be_origin=searchv2&overlay_label=not_apply&search_layout=grid&position=2&type=product&tracking_id=0756fea2-199b-4189-a207-42eae74841b0&overlay_label_capability=not_apply&wid=MLB3138506537&sid=search"
-  },
-  {
     "id": 1,
     "codigo": "01",
     "titulo": "Fritadeira Elétrica Air Fryer 4L Antiaderente 1500W Timer Sonoro",
