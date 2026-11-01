@@ -21,24 +21,6 @@ window.PRODUTOS_INICIAIS = [
     "linkAfiliado": "https://meli.la/1QM5CM3"
   },
   {
-    "id": 6,
-    "codigo": "06",
-    "titulo": "Aspirador de Pó Portátil Automotivo e Residencial Sem Fio Recarregável Turbo",
-    "categoria": "ferramentas",
-    "categoriaNome": "Ferramentas & Auto",
-    "plataforma": "shopee",
-    "plataformaNome": "Shopee",
-    "precoAntigo": 119.9,
-    "precoAtual": 54.9,
-    "parcelamento": "Envio nacional imediato",
-    "avaliacao": "4.7",
-    "vendidos": "+6 mil vendidos",
-    "destaqueVideo": true,
-    "freteGratis": true,
-    "imagem": "https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=700&q=80",
-    "linkAfiliado": "https://shopee.com.br"
-  },
-  {
     "id": 7,
     "codigo": "07",
     "titulo": "Smartwatch Relógio Inteligente Tela Amoled Chamadas Bluetooth À Prova D'Água",
