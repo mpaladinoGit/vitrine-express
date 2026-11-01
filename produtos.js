@@ -21,24 +21,6 @@ window.PRODUTOS_INICIAIS = [
     "linkAfiliado": "https://meli.la/1QM5CM3"
   },
   {
-    "id": 7,
-    "codigo": "07",
-    "titulo": "Smartwatch Relógio Inteligente Tela Amoled Chamadas Bluetooth À Prova D'Água",
-    "categoria": "eletronicos",
-    "categoriaNome": "Eletrônicos",
-    "plataforma": "mercadolivre",
-    "plataformaNome": "Mercado Livre",
-    "precoAntigo": 279.9,
-    "precoAtual": 149.9,
-    "parcelamento": "em até 5x de R$ 29,98 sem juros",
-    "avaliacao": "4.8",
-    "vendidos": "+2 mil vendidos",
-    "destaqueVideo": false,
-    "freteGratis": true,
-    "imagem": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80",
-    "linkAfiliado": "https://www.mercadolivre.com.br"
-  },
-  {
     "id": 8,
     "codigo": "08",
     "titulo": "Kit 6 Potes Herméticos Empilháveis Acrílico Organização de Cozinha e Dispensa",
