@@ -21,24 +21,6 @@ window.PRODUTOS_INICIAIS = [
     "linkAfiliado": "https://meli.la/1QM5CM3"
   },
   {
-    "id": 4,
-    "codigo": "04",
-    "titulo": "Parafusadeira e Furadeira 12V Sem Fio Bateria Lítio + Maleta com 24 Acessórios",
-    "categoria": "ferramentas",
-    "categoriaNome": "Ferramentas & Auto",
-    "plataforma": "mercadolivre",
-    "plataformaNome": "Mercado Livre",
-    "precoAntigo": 249.0,
-    "precoAtual": 139.9,
-    "parcelamento": "Chega amanhã no envio Full",
-    "avaliacao": "4.8",
-    "vendidos": "+3 mil vendidos",
-    "destaqueVideo": false,
-    "freteGratis": true,
-    "imagem": "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=700&q=80",
-    "linkAfiliado": "https://www.mercadolivre.com.br"
-  },
-  {
     "id": 5,
     "codigo": "05",
     "titulo": "Escova Secadora e Modeladora 4 em 1 Íons Revestimento Cerâmico 1300W Bivolt",
