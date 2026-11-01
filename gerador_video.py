@@ -106,7 +106,7 @@ def montar_legenda_padrao(produto):
         f"📦 {titulo}\n"
         f"{linha_preco}\n\n"
         f"👇 COMO ENCONTRAR O LINK OFICIAL:\n"
-        f"1️⃣ Clique no link do perfil (@vitrineexpress)\n"
+        f"1️⃣ Acesse nossa vitrine no perfil: vitrine-express-ten.vercel.app\n"
         f"2️⃣ Digite o código #{codigo} na busca!\n\n"
         f"🔒 Compra 100% segura direto no app oficial ({plataforma_nome}).\n\n"
         f"#achadinhos #ofertas #{plataforma_tag} #promocao #desconto #vitrineexpress #dicasdecompras"
