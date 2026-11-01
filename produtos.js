@@ -19,24 +19,5 @@ window.PRODUTOS_INICIAIS = [
     "freteGratis": true,
     "imagem": "https://http2.mlstatic.com/D_NQ_NP_812857-MLA109586548676_042026-P.webp",
     "linkAfiliado": "https://meli.la/1QM5CM3"
-  },
-  {
-    "id": 8,
-    "codigo": "08",
-    "titulo": "Kit 6 Potes Herméticos Empilháveis Acrílico Organização de Cozinha e Dispensa",
-    "categoria": "casa",
-    "categoriaNome": "Casa & Cozinha",
-    "plataforma": "amazon",
-    "categoriaSlug": "casa",
-    "plataformaNome": "Amazon",
-    "precoAntigo": 149.9,
-    "precoAtual": 84.9,
-    "parcelamento": "Entrega grátis com Prime",
-    "avaliacao": "4.9",
-    "vendidos": "+3 mil vendidos",
-    "destaqueVideo": false,
-    "freteGratis": true,
-    "imagem": "https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=700&q=80",
-    "linkAfiliado": "https://www.amazon.com.br"
   }
 ];
