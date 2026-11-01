@@ -3,6 +3,24 @@
 
 window.PRODUTOS_INICIAIS = [
   {
+    "id": 1793577492193,
+    "codigo": "11",
+    "titulo": "Kit 2 Refletor Super Led 400w Ip67 Holofote Bivolt Prova D'água Branco Frio 6500k Preto",
+    "categoria": "casa",
+    "categoriaNome": "Casa & Cozinha",
+    "plataforma": "mercadolivre",
+    "plataformaNome": "Mercado Livre",
+    "precoAntigo": 53.76,
+    "precoAtual": 42,
+    "parcelamento": "Oferta selecionada na Vitrine Express",
+    "avaliacao": "4.9",
+    "vendidos": "Destaque da Vitrine",
+    "destaqueVideo": true,
+    "freteGratis": true,
+    "imagem": "https://http2.mlstatic.com/D_NQ_NP_753073-MLA110946060098_052026-P.webp",
+    "linkAfiliado": "https://meli.la/2BJMBxc"
+  },
+  {
     "id": 1793572543769,
     "codigo": "10",
     "titulo": "Mini Compressor de Ar Digital Portátil Recarregável USB-C Lumi para Pneus de Carro, Moto e Bicicleta Inflador Elétrico de Bolas e Infláveis Display LCD Alta Pressão Sem Fio Preto",
