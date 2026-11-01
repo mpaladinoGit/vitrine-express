@@ -391,6 +391,20 @@ def extrair_dados_url(texto_ou_url):
                     pass
 
     if titulo:
+        # Links de afiliado meli.la trazem o preço exato no final do título (ex: "... - R$ 53,20")
+        m_preco_titulo = re.search(
+            r"[\-–]\s*R\$\s*(\d{1,3}(?:\.\d{3})*(?:,\d{2})|\d+(?:,\d{2})?)\s*$",
+            titulo,
+        )
+        if m_preco_titulo:
+            try:
+                preco_do_titulo = float(m_preco_titulo.group(1).replace(".", "").replace(",", "."))
+                if preco_do_titulo > 0:
+                    preco_atual = preco_do_titulo
+            except Exception:
+                pass
+            titulo = titulo[: m_preco_titulo.start()].strip()
+
         titulo = re.sub(
             r"\s*[\|\-]\s*(Mercado Livre|Mercado Libre|Shopee Brasil|Shopee|Amazon\.com\.br).*$",
             "",
