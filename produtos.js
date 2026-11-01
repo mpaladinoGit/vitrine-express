@@ -21,24 +21,6 @@ window.PRODUTOS_INICIAIS = [
     "linkAfiliado": "https://meli.la/1QM5CM3"
   },
   {
-    "id": 1,
-    "codigo": "01",
-    "titulo": "Fritadeira Elétrica Air Fryer 4L Antiaderente 1500W Timer Sonoro",
-    "categoria": "casa",
-    "categoriaNome": "Casa & Cozinha",
-    "plataforma": "mercadolivre",
-    "plataformaNome": "Mercado Livre",
-    "precoAntigo": 389.9,
-    "precoAtual": 239.9,
-    "parcelamento": "em até 6x de R$ 39,98 sem juros",
-    "avaliacao": "4.9",
-    "vendidos": "+5 mil vendidos",
-    "destaqueVideo": true,
-    "freteGratis": true,
-    "imagem": "https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&w=700&q=80",
-    "linkAfiliado": "https://www.mercadolivre.com.br"
-  },
-  {
     "id": 2,
     "codigo": "02",
     "titulo": "Mini Processador e Triturador Elétrico USB Recarregável 250ml para Alho e Temperos",
