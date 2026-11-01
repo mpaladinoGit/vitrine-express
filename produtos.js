@@ -21,24 +21,6 @@ window.PRODUTOS_INICIAIS = [
     "linkAfiliado": "https://meli.la/1QM5CM3"
   },
   {
-    "id": 3,
-    "codigo": "03",
-    "titulo": "Fone de Ouvido Bluetooth 5.3 Sem Fio TWS com Cancelamento de Ruído e Case LED",
-    "categoria": "eletronicos",
-    "categoriaNome": "Eletrônicos",
-    "plataforma": "shopee",
-    "plataformaNome": "Shopee",
-    "precoAntigo": 129.9,
-    "precoAtual": 49.9,
-    "parcelamento": "em até 3x sem juros",
-    "avaliacao": "4.8",
-    "vendidos": "+8 mil vendidos",
-    "destaqueVideo": true,
-    "freteGratis": true,
-    "imagem": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=700&q=80",
-    "linkAfiliado": "https://shopee.com.br"
-  },
-  {
     "id": 4,
     "codigo": "04",
     "titulo": "Parafusadeira e Furadeira 12V Sem Fio Bateria Lítio + Maleta com 24 Acessórios",
