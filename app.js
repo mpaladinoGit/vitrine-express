@@ -504,8 +504,10 @@
   const videoPreviewPlayer = document.getElementById("videoPreviewPlayer");
   const btnDownloadVideo = document.getElementById("btnDownloadVideo");
   const btnAbrirPastaVideos = document.getElementById("btnAbrirPastaVideos");
+  const btnPostarTikTok = document.getElementById("btnPostarTikTok");
   const inputLegendaIA = document.getElementById("inputLegendaIA");
   const btnCopiarLegenda = document.getElementById("btnCopiarLegenda");
+  let ultimoArquivoVideoGerado = "";
 
   async function abrirEstudioVideo(idProduto) {
     produtoVideoAtualId = idProduto;
@@ -572,8 +574,9 @@
       const dados = await resp.json();
       if (resp.ok && dados.sucesso) {
         videoStatusMsg.className = "extract-status success";
-        videoStatusMsg.textContent = `✅ Vídeo pronto (${dados.duracao}s)! Assista abaixo ou clique em Baixar.`;
+        videoStatusMsg.textContent = `✅ Vídeo pronto (${dados.duracao}s)! Clique em "🚀 Postar no TikTok" abaixo.`;
         inputLegendaIA.value = dados.legenda || inputLegendaIA.value;
+        ultimoArquivoVideoGerado = dados.arquivo || "";
         const urlVideo = "/" + dados.arquivo + "?t=" + Date.now();
         videoPreviewPlayer.src = urlVideo;
         btnDownloadVideo.href = "/" + dados.arquivo;
@@ -594,8 +597,31 @@
 
   btnAbrirPastaVideos.addEventListener("click", async () => {
     try {
-      await fetch("/api/abrir-pasta-videos", { method: "POST" });
+      await fetch("/api/abrir-pasta-videos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ arquivo: ultimoArquivoVideoGerado })
+      });
     } catch (e) {}
+  });
+
+  btnPostarTikTok.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(inputLegendaIA.value);
+    } catch (e) {}
+
+    try {
+      await fetch("/api/abrir-pasta-videos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ arquivo: ultimoArquivoVideoGerado })
+      });
+    } catch (e) {}
+
+    window.open("https://www.tiktok.com/tiktokstudio/upload", "_blank", "noopener,noreferrer");
+    videoStatusMsg.className = "extract-status success";
+    videoStatusMsg.textContent =
+      "🚀 Legenda copiada + Pasta aberta com o vídeo marcado! Arraste o vídeo para a aba do TikTok e aperte Ctrl+V na legenda.";
   });
 
   btnCopiarLegenda.addEventListener("click", () => {
