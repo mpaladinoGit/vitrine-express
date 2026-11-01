@@ -21,24 +21,6 @@ window.PRODUTOS_INICIAIS = [
     "linkAfiliado": "https://meli.la/1QM5CM3"
   },
   {
-    "id": 2,
-    "codigo": "02",
-    "titulo": "Mini Processador e Triturador Elétrico USB Recarregável 250ml para Alho e Temperos",
-    "categoria": "casa",
-    "categoriaNome": "Casa & Cozinha",
-    "plataforma": "shopee",
-    "plataformaNome": "Shopee",
-    "precoAntigo": 59.9,
-    "precoAtual": 24.9,
-    "parcelamento": "Cupom de frete grátis disponível no app",
-    "avaliacao": "4.9",
-    "vendidos": "+10 mil vendidos",
-    "destaqueVideo": true,
-    "freteGratis": true,
-    "imagem": "https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=700&q=80",
-    "linkAfiliado": "https://shopee.com.br"
-  },
-  {
     "id": 3,
     "codigo": "03",
     "titulo": "Fone de Ouvido Bluetooth 5.3 Sem Fio TWS com Cancelamento de Ruído e Case LED",
