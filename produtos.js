@@ -19,7 +19,7 @@ window.PRODUTOS_INICIAIS = [
     "freteGratis": false,
     "imagem": "https://http2.mlstatic.com/D_NQ_NP_748851-MLA114016338498_072026-P.webp",
     "linkAfiliado": "https://meli.la/2t1nCiS",
-    "video": "videos_gerados/vitrine_express_cod_14_1793589369.mp4"
+    "video": "videos_gerados/vitrine_express_cod_14_1793589426.mp4"
   },
   {
     "id": 1793578015493,
