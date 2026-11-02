@@ -1,5 +1,6 @@
 import html
 import http.cookiejar
+import importlib
 import json
 import os
 import re
@@ -503,6 +504,7 @@ class PainelHandler(SimpleHTTPRequestHandler):
             return self._enviar_json(200, {"sucesso": True, "produtos": produtos})
 
         if parsed.path == "/api/preparar-video":
+            importlib.reload(gerador_video)
             id_alvo = str(payload.get("id") or "")
             produtos = ler_produtos()
             prod = next((p for p in produtos if str(p.get("id")) == id_alvo), None)
@@ -518,6 +520,7 @@ class PainelHandler(SimpleHTTPRequestHandler):
             )
 
         if parsed.path == "/api/gerar-video":
+            importlib.reload(gerador_video)
             id_alvo = str(payload.get("id") or "")
             roteiro = payload.get("roteiro") or ""
             voz = payload.get("voz") or "pt-BR-FranciscaNeural"
