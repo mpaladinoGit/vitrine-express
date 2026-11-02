@@ -53,13 +53,13 @@ import threading
 
 def _sincronizar_github_bg():
     try:
-        subprocess.run(["git", "add", "produtos.js"], cwd=DIRETORIO_BASE, timeout=10)
+        subprocess.run(["git", "add", "produtos.js", "videos_gerados"], cwd=DIRETORIO_BASE, timeout=15)
         subprocess.run(
-            ["git", "commit", "-m", "Atualiza catalogo de produtos da Vitrine Express"],
+            ["git", "commit", "-m", "Atualiza catalogo e videos da Vitrine Express"],
             cwd=DIRETORIO_BASE,
             timeout=10,
         )
-        subprocess.run(["git", "push", "origin", "main"], cwd=DIRETORIO_BASE, timeout=25)
+        subprocess.run(["git", "push", "origin", "main"], cwd=DIRETORIO_BASE, timeout=30)
     except Exception:
         pass
 
@@ -527,6 +527,9 @@ class PainelHandler(SimpleHTTPRequestHandler):
                 return self._enviar_json(404, {"sucesso": False, "erro": "Produto não encontrado."})
             try:
                 res = gerador_video.gerar_video_produto(prod, roteiro_custom=roteiro, voz=voz)
+                if res.get("sucesso") and res.get("arquivo"):
+                    prod["video"] = res["arquivo"]
+                    salvar_produtos(produtos)
                 return self._enviar_json(200, res)
             except Exception as e:
                 return self._enviar_json(500, {"sucesso": False, "erro": str(e)})

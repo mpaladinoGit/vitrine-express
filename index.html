@@ -14,7 +14,7 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles.css?v=8" />
+  <link rel="stylesheet" href="styles.css?v=9" />
 </head>
 <body>
   <!-- Barra de Confiança -->
@@ -294,7 +294,48 @@
     </div>
   </div>
 
-  <script src="produtos.js?v=8"></script>
-  <script src="app.js?v=8"></script>
+  <!-- Modal Público de Vídeo + Compra Direta (Para quem abre pelo WhatsApp / Celular) -->
+  <div id="clienteOfertaModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-card modal-cliente-oferta">
+      <div class="cliente-oferta-header">
+        <span id="clienteOfertaCodigo" class="badge-oferta-modal">🔥 OFERTA #10</span>
+        <button type="button" id="closeClienteOfertaBtn" class="btn-close-light" aria-label="Fechar">✕ Fechar</button>
+      </div>
+
+      <div class="cliente-video-wrap" id="clienteVideoWrap">
+        <video id="clienteVideoPlayer" controls playsinline></video>
+        <img id="clienteFotoFallback" src="" alt="" style="display: none;" />
+      </div>
+
+      <div class="cliente-cta-box">
+        <h3 id="clienteOfertaTitulo" class="cliente-oferta-titulo"></h3>
+        <div class="cliente-preco-row">
+          <span id="clientePrecoAntigo" class="cliente-preco-antigo"></span>
+          <span id="clientePrecoAtual" class="cliente-preco-atual"></span>
+        </div>
+
+        <a
+          id="clienteBtnComprarGigante"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-comprar-gigante"
+        >
+          🛒 COMPRAR AGORA NO MERCADO LIVRE ➔
+        </a>
+
+        <div class="cliente-seguranca-nota">
+          🔒 Pagamento e entrega 100% garantidos direto no aplicativo oficial.
+        </div>
+
+        <button type="button" id="clienteBtnZapShare" class="btn-zap-share-modal">
+          📲 Enviar esta Oferta no WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="produtos.js?v=9"></script>
+  <script src="app.js?v=9"></script>
 </body>
 </html>

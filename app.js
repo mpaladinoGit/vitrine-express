@@ -1,9 +1,12 @@
 (function () {
+  const DOMINIO_PUBLICO = "https://vitrine-express-ten.vercel.app";
+
   let listaProdutos = Array.isArray(window.PRODUTOS_INICIAIS) ? [...window.PRODUTOS_INICIAIS] : [];
   let categoriaAtiva = "todos";
   let plataformaAtiva = "todas";
   let termoBusca = "";
   let produtoVideoAtualId = null;
+  let produtoClienteModalAtual = null;
 
   const isModoAdmin =
     location.hostname === "localhost" ||
@@ -33,6 +36,7 @@
           listaProdutos = dados.produtos;
           renderizarAtalhosNumeros(listaProdutos);
           renderizarCatalogo();
+          verificarParametroProdutoNaUrl();
         }
       }
     } catch (e) {
@@ -71,6 +75,86 @@
     return mapa[slug] || "Loja Oficial";
   }
 
+  function montarLinkDiretoProduto(p) {
+    return `${DOMINIO_PUBLICO}/?p=${encodeURIComponent(p.codigo)}`;
+  }
+
+  function compartilharNoWhatsApp(p) {
+    const linkDireto = montarLinkDiretoProduto(p);
+    const nomePlat = p.plataformaNome || obterNomePlataforma(p.plataforma);
+    const texto =
+      `🔥 *Olha esse achadinho em promoção no ${nomePlat}!*\n\n` +
+      `📦 ${p.titulo}\n` +
+      `💰 Por *${formatarMoeda(p.precoAtual)}*\n\n` +
+      `👇 *Assista ao vídeo e compre no link oficial abaixo:*\n` +
+      `${linkDireto}`;
+
+    const urlWa = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
+    window.open(urlWa, "_blank", "noopener,noreferrer");
+  }
+
+  // Modal Público de Vídeo + Botão Gigante de Compra
+  const clienteOfertaModal = document.getElementById("clienteOfertaModal");
+  const closeClienteOfertaBtn = document.getElementById("closeClienteOfertaBtn");
+  const clienteOfertaCodigo = document.getElementById("clienteOfertaCodigo");
+  const clienteVideoPlayer = document.getElementById("clienteVideoPlayer");
+  const clienteFotoFallback = document.getElementById("clienteFotoFallback");
+  const clienteOfertaTitulo = document.getElementById("clienteOfertaTitulo");
+  const clientePrecoAntigo = document.getElementById("clientePrecoAntigo");
+  const clientePrecoAtual = document.getElementById("clientePrecoAtual");
+  const clienteBtnComprarGigante = document.getElementById("clienteBtnComprarGigante");
+  const clienteBtnZapShare = document.getElementById("clienteBtnZapShare");
+
+  function abrirModalOfertaCliente(p) {
+    if (!p) return;
+    produtoClienteModalAtual = p;
+    const nomePlat = (p.plataformaNome || obterNomePlataforma(p.plataforma)).toUpperCase();
+
+    clienteOfertaCodigo.textContent = `🔥 OFERTA #${p.codigo} • ${nomePlat}`;
+    clienteOfertaTitulo.textContent = p.titulo;
+
+    if (p.precoAntigo && p.precoAntigo > p.precoAtual) {
+      clientePrecoAntigo.textContent = `De ${formatarMoeda(p.precoAntigo)}`;
+      clientePrecoAntigo.style.display = "inline";
+    } else {
+      clientePrecoAntigo.style.display = "none";
+    }
+
+    clientePrecoAtual.textContent = `Por ${formatarMoeda(p.precoAtual)}`;
+    clienteBtnComprarGigante.href = p.linkAfiliado;
+    clienteBtnComprarGigante.textContent = `🛒 COMPRAR NO ${nomePlat} (${formatarMoeda(p.precoAtual)}) ➔`;
+
+    if (p.video) {
+      clienteFotoFallback.style.display = "none";
+      clienteVideoPlayer.style.display = "block";
+      clienteVideoPlayer.src = p.video;
+      clienteVideoPlayer.play().catch(() => {});
+    } else {
+      clienteVideoPlayer.pause();
+      clienteVideoPlayer.style.display = "none";
+      clienteFotoFallback.src = p.imagem;
+      clienteFotoFallback.style.display = "block";
+    }
+
+    clienteOfertaModal.classList.add("open");
+  }
+
+  function fecharModalOfertaCliente() {
+    clienteVideoPlayer.pause();
+    clienteOfertaModal.classList.remove("open");
+  }
+
+  closeClienteOfertaBtn.addEventListener("click", fecharModalOfertaCliente);
+  clienteOfertaModal.addEventListener("click", (e) => {
+    if (e.target === clienteOfertaModal) fecharModalOfertaCliente();
+  });
+
+  clienteBtnZapShare.addEventListener("click", () => {
+    if (produtoClienteModalAtual) {
+      compartilharNoWhatsApp(produtoClienteModalAtual);
+    }
+  });
+
   function renderizarAtalhosNumeros(produtos) {
     const destaques = produtos.slice(0, 7);
     const botoesHtml = destaques
@@ -88,18 +172,10 @@
     quickNumbersEl.querySelectorAll(".num-pill").forEach((btn) => {
       btn.addEventListener("click", () => {
         const codigo = btn.getAttribute("data-code");
-        if (searchInput.value === codigo) {
-          searchInput.value = "";
-          termoBusca = "";
-          btn.classList.remove("active");
-        } else {
-          quickNumbersEl.querySelectorAll(".num-pill").forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
-          searchInput.value = codigo;
-          termoBusca = codigo;
+        const prodAchado = listaProdutos.find((item) => String(item.codigo) === String(codigo));
+        if (prodAchado) {
+          abrirModalOfertaCliente(prodAchado);
         }
-        atualizarBotaoLimpar();
-        renderizarCatalogo();
       });
     });
   }
@@ -145,9 +221,7 @@
         renderizarCatalogo();
         return;
       }
-    } catch (e) {
-      // Fallback caso aberto sem servidor
-    }
+    } catch (e) {}
 
     listaProdutos = listaProdutos.filter((p) => String(p.id) !== String(id));
     renderizarAtalhosNumeros(listaProdutos);
@@ -178,7 +252,7 @@
 
         return `
           <article class="product-card">
-            <div class="card-image-wrap">
+            <div class="card-image-wrap" data-open-id="${p.id}" style="cursor: pointer;">
               <div class="badge-codigo"><span>#${p.codigo}</span></div>
               ${desconto > 0 ? `<div class="badge-desconto">-${desconto}% OFF</div>` : ""}
               <div class="badge-plataforma plat-${p.plataforma}">${nomePlat}</div>
@@ -196,7 +270,7 @@
                 <span class="card-rating">★ ${p.avaliacao || "4.9"} (${p.vendidos || "Oferta"})</span>
               </div>
 
-              <h2 class="card-title" title="${p.titulo}">${p.titulo}</h2>
+              <h2 class="card-title" title="${p.titulo}" data-open-id="${p.id}" style="cursor: pointer;">${p.titulo}</h2>
 
               <div class="price-block">
                 ${
@@ -216,9 +290,18 @@
                   rel="noopener noreferrer"
                   class="btn-buy ${p.plataforma}"
                 >
-                  <span>Ver Oferta no ${nomePlat}</span>
+                  <span>🛒 Comprar no ${nomePlat}</span>
                   <span>➔</span>
                 </a>
+
+                <div class="card-actions-secondary">
+                  <button type="button" class="btn-watch-card" data-open-id="${p.id}">
+                    ${p.video ? "▶️ Ver Vídeo da Oferta" : "🔍 Ver Detalhes"}
+                  </button>
+                  <button type="button" class="btn-zap-card" data-zap-id="${p.id}">
+                    📲 Mandar no Zap
+                  </button>
+                </div>
 
                 ${
                   isModoAdmin
@@ -232,9 +315,28 @@
       })
       .join("");
 
+    // Clique na foto, título ou botão "Ver Vídeo da Oferta" abre o modal com vídeo + botão gigante de compra
+    gridEl.querySelectorAll("[data-open-id]").forEach((el) => {
+      el.addEventListener("click", (e) => {
+        if (e.target.closest(".btn-delete-card")) return;
+        const id = el.getAttribute("data-open-id");
+        const prod = listaProdutos.find((item) => String(item.id) === String(id));
+        if (prod) abrirModalOfertaCliente(prod);
+      });
+    });
+
+    gridEl.querySelectorAll(".btn-zap-card").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-zap-id");
+        const prod = listaProdutos.find((item) => String(item.id) === String(id));
+        if (prod) compartilharNoWhatsApp(prod);
+      });
+    });
+
     if (isModoAdmin) {
       gridEl.querySelectorAll(".btn-delete-card").forEach((btn) => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
           excluirProduto(btn.getAttribute("data-del-id"), btn.getAttribute("data-del-title"));
         });
       });
@@ -282,7 +384,6 @@
     renderizarCatalogo();
   });
 
-  // Eventos de categoria
   document.querySelectorAll(".cat-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       document.querySelectorAll(".cat-btn").forEach((b) => b.classList.remove("active"));
@@ -292,7 +393,6 @@
     });
   });
 
-  // Eventos de plataforma
   document.querySelectorAll(".plat-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       document.querySelectorAll(".plat-btn").forEach((b) => b.classList.remove("active"));
@@ -351,18 +451,10 @@
         return;
       }
 
-      if (dados.urlOriginal) {
-        inputLink.value = dados.urlOriginal;
-      }
-      if (dados.plataforma) {
-        document.getElementById("inputPlataforma").value = dados.plataforma;
-      }
-      if (dados.categoria) {
-        document.getElementById("inputCategoria").value = dados.categoria;
-      }
-      if (dados.titulo) {
-        document.getElementById("inputTitulo").value = dados.titulo;
-      }
+      if (dados.urlOriginal) inputLink.value = dados.urlOriginal;
+      if (dados.plataforma) document.getElementById("inputPlataforma").value = dados.plataforma;
+      if (dados.categoria) document.getElementById("inputCategoria").value = dados.categoria;
+      if (dados.titulo) document.getElementById("inputTitulo").value = dados.titulo;
       if (dados.precoAtual && dados.precoAtual > 0) {
         document.getElementById("inputPrecoAtual").value = Number(dados.precoAtual).toFixed(2);
       }
@@ -574,7 +666,7 @@
       const dados = await resp.json();
       if (resp.ok && dados.sucesso) {
         videoStatusMsg.className = "extract-status success";
-        videoStatusMsg.textContent = `✅ Vídeo pronto (${dados.duracao}s)! Clique em "🚀 Postar no TikTok" abaixo.`;
+        videoStatusMsg.textContent = `✅ Vídeo pronto (${dados.duracao}s) e salvo na Vitrine! Clique em "🚀 Postar no TikTok" abaixo.`;
         inputLegendaIA.value = dados.legenda || inputLegendaIA.value;
         ultimoArquivoVideoGerado = dados.arquivo || "";
         const urlVideo = "/" + dados.arquivo + "?t=" + Date.now();
@@ -582,6 +674,7 @@
         btnDownloadVideo.href = "/" + dados.arquivo;
         videoResultArea.style.display = "grid";
         videoPreviewPlayer.play().catch(() => {});
+        sincronizarProdutosDoServidor();
       } else {
         videoStatusMsg.className = "extract-status warn";
         videoStatusMsg.textContent = "⚠️ Erro ao gerar vídeo: " + (dados.erro || "Tente novamente.");
@@ -635,9 +728,28 @@
     });
   });
 
+  // Se o cliente abrir um link direto como https://vitrine-express-ten.vercel.app/?p=10, já abre o Vídeo + Botão Gigante de Compra!
+  let modalUrlJaAberto = false;
+  function verificarParametroProdutoNaUrl() {
+    if (modalUrlJaAberto) return;
+    const params = new URLSearchParams(location.search);
+    const codParam = (params.get("p") || params.get("codigo") || "").trim().replace(/^#/, "");
+    if (!codParam) return;
+    const prod = listaProdutos.find(
+      (item) =>
+        String(item.codigo).toLowerCase() === codParam.toLowerCase() ||
+        String(item.codigo).replace(/^0+/, "") === codParam.replace(/^0+/, "")
+    );
+    if (prod) {
+      modalUrlJaAberto = true;
+      abrirModalOfertaCliente(prod);
+    }
+  }
+
   // Inicialização
   renderizarAtalhosNumeros(listaProdutos);
   renderizarCatalogo();
+  verificarParametroProdutoNaUrl();
   sincronizarProdutosDoServidor();
 
   if (location.search.includes("painel=1")) {

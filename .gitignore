@@ -1,6 +1,5 @@
 __pycache__/
 *.pyc
-videos_gerados/*.mp4
 videos_gerados/*.mp3
 videos_gerados/*.png
 videos_gerados/*.txt
