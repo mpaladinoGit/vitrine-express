@@ -3,6 +3,24 @@
 
 window.PRODUTOS_INICIAIS = [
   {
+    "id": 1793578958088,
+    "codigo": "14",
+    "titulo": "Balança Digital Corporal Bioimpedância Pholex Com Aplicativo Bluetooth Android e iOS Vidro Temperado Alta Capacidade Balança Academia Personal Banheiro Homologada Anatel",
+    "categoria": "eletronicos",
+    "categoriaNome": "Eletrônicos",
+    "plataforma": "mercadolivre",
+    "plataformaNome": "Mercado Livre",
+    "precoAntigo": 35.21,
+    "precoAtual": 27.51,
+    "parcelamento": "Oferta selecionada na Vitrine Express",
+    "avaliacao": "4.9",
+    "vendidos": "Destaque da Vitrine",
+    "destaqueVideo": true,
+    "freteGratis": true,
+    "imagem": "https://http2.mlstatic.com/D_NQ_NP_748851-MLA114016338498_072026-P.webp",
+    "linkAfiliado": "https://meli.la/2t1nCiS"
+  },
+  {
     "id": 1793578015493,
     "codigo": "13",
     "titulo": "Celular Samsung Galaxy A17 Com Ia, 128gb, 4gb Ram, Câm De 50mp, Tela De 6.7\", Nfc, Ip54 - Preto",
