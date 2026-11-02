@@ -462,6 +462,9 @@ class PainelHandler(SimpleHTTPRequestHandler):
         self.send_header("Expires", "0")
         super().end_headers()
 
+    def log_message(self, format, *args):
+        pass
+
     def _enviar_json(self, status, dados):
         corpo = json.dumps(dados, ensure_ascii=False).encode("utf-8")
         self.send_response(status)
