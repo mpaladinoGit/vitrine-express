@@ -218,12 +218,14 @@ def montar_legenda_padrao(produto):
     gancho = ganchos_legenda[_indice_variacao(produto) % len(ganchos_legenda)]
 
     return (
-        f"{gancho}\n\n"
+        f"🛒 COMPRAR AGORA: Clique aqui em 👉 @vitrineexpress.top e toque no link azul do perfil!\n\n"
+        f"{gancho}\n"
         f"📦 {titulo} (Item #{codigo})\n"
         f"{linha_preco}\n\n"
-        f"👇 COMO COMPRAR NO SITE OFICIAL:\n"
-        f"1️⃣ Toque no nosso perfil e clique no link da Vitrine ({LINK_CURTO_LOJA})\n"
-        f"2️⃣ Clique no botão verde da oferta para abrir direto no {plataforma_nome}!\n\n"
+        f"👇 PASSO A PASSO PARA ABRIR NO {plataforma_nome.upper()}:\n"
+        f"1️⃣ Clique no nome azul aqui: @vitrineexpress.top\n"
+        f"2️⃣ Toque no link azul lá no topo do perfil ({LINK_CURTO_LOJA})\n"
+        f"3️⃣ Clique no botão verde da oferta para abrir direto no {plataforma_nome}!\n\n"
         f"🔒 Compra 100% segura direto no app oficial ({plataforma_nome}).\n\n"
         f"#achadinhos #ofertas #{plataforma_tag} #promocao #desconto #vitrineexpress #dicasdecompras"
     )
@@ -457,45 +459,49 @@ def criar_slide_cena(produto, galeria_imgs, numero_cena, total_cenas, tema):
 
     # Título do Produto
     titulo = (produto.get("titulo") or "Produto em Oferta").strip()
-    linhas_titulo = textwrap.wrap(titulo, width=36)[:2]
-    y_t = 684
+    linhas_titulo = textwrap.wrap(titulo, width=38)[:2]
+    y_t = 674
     for linha in linhas_titulo:
         centralizar_texto(draw, W, y_t, linha, f_titulo, (255, 255, 255))
-        y_t += 34
+        y_t += 32
 
-    # Bloco de Preço
+    # Bloco de Preço (compactado para caber junto com o CTA dentro do quadrado central 1:1 do Instagram!)
     desenhar_retangulo_arredondado(
-        draw, (42, 764, W - 42, 950), 20, fill=tema["price_box"], outline=tema["price_color"], width=2
+        draw, (42, 744, W - 42, 886), 18, fill=tema["price_box"], outline=tema["price_color"], width=2
     )
     if preco_antigo > preco_atual:
         txt_ant = f"De {formatar_moeda_br(preco_antigo)}"
         bbox_a = draw.textbbox((0, 0), txt_ant, font=f_preco_ant)
         tw_a = bbox_a[2] - bbox_a[0]
         x_a = (W - tw_a) // 2
-        draw.text((x_a, 776), txt_ant, font=f_preco_ant, fill=(203, 213, 225))
-        draw.line([(x_a, 793), (x_a + tw_a, 793)], fill=(239, 68, 68), width=3)
+        draw.text((x_a, 752), txt_ant, font=f_preco_ant, fill=(203, 213, 225))
+        draw.line([(x_a, 768), (x_a + tw_a, 768)], fill=(239, 68, 68), width=3)
 
     txt_atu = f"Por {formatar_moeda_br(preco_atual)}"
-    centralizar_texto(draw, W, 810, txt_atu, f_preco_atu, tema["price_color"])
+    centralizar_texto(draw, W, 778, txt_atu, f_preco_atu, tema["price_color"])
     condicao_txt = (
         f"Frete Grátis • Compra Segura no {produto.get('plataformaNome', 'Site Oficial')}"
         if preco_atual >= 79
         else f"no Pix • Compra 100% Segura no {produto.get('plataformaNome', 'Site Oficial')}"
     )
-    centralizar_texto(draw, W, 898, condicao_txt, f_sub, (241, 245, 249))
+    centralizar_texto(draw, W, 852, condicao_txt, f_sub, (241, 245, 249))
 
-    # Bloco Inferior de Chamada para Ação
+    # Faixa de Chamada para Ação DENTRO da Zona Segura 1:1 (y=896..994 — nunca corta no Instagram!)
     cor_box_cta = tema["cta_alt"] if numero_cena in (3, 5) else tema["cta_bg"]
     desenhar_retangulo_arredondado(
-        draw, (36, 972, W - 36, 1225), 22, fill=cor_box_cta, outline=(254, 240, 138), width=4
+        draw, (42, 896, W - 42, 994), 16, fill=cor_box_cta, outline=(254, 240, 138), width=3
     )
-    centralizar_texto(draw, W, 988, "COMO COMPRAR? ACESSE O LINK DO PERFIL:", f_sub, (255, 255, 255))
+    centralizar_texto(draw, W, 908, "COMO COMPRAR? CLIQUE EM @vitrineexpress.top", f_sub, (255, 255, 255))
+    centralizar_texto(draw, W, 944, "E TOQUE NO LINK AZUL DO PERFIL!", f_tag, (254, 240, 138))
 
-    desenhar_retangulo_arredondado(draw, (64, 1024, W - 64, 1098), 14, fill=(15, 23, 42))
-    centralizar_texto(draw, W, 1034, LINK_CURTO_LOJA, f_link_gigante, (251, 191, 36))
-
-    centralizar_texto(draw, W, 1116, "CLIQUE NO BOTÃO VERDE DE COMPRA", f_tag, (255, 255, 255))
-    centralizar_texto(draw, W, 1160, f"E ABRA DIRETO NO {plataforma_nome}!", f_sub, (254, 240, 138))
+    # Bloco complementar inferior para visualização 9:16 (TikTok / Reels tela cheia)
+    desenhar_retangulo_arredondado(
+        draw, (42, 1012, W - 42, 1220), 20, fill=(15, 23, 42), outline=tema["accent"], width=2
+    )
+    centralizar_texto(draw, W, 1028, "OU ACESSE DIRETO NO NAVEGADOR:", f_sub, (203, 213, 225))
+    desenhar_retangulo_arredondado(draw, (68, 1064, W - 68, 1134), 12, fill=tema["card_header"])
+    centralizar_texto(draw, W, 1074, LINK_CURTO_LOJA, f_link_gigante, (251, 191, 36))
+    centralizar_texto(draw, W, 1152, f"CLIQUE NO BOTÃO VERDE ➔ {plataforma_nome}", f_sub, (74, 222, 128))
 
     # Barra de Progresso no rodapé do vídeo
     prog_w = int(((W - 72) * numero_cena) / max(1, total_cenas))

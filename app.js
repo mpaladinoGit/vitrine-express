@@ -714,6 +714,8 @@
       await navigator.clipboard.writeText(inputLegendaIA.value);
     } catch (e) {}
 
+    window.open("https://www.tiktok.com/tiktokstudio/upload", "_blank", "noopener,noreferrer");
+
     try {
       await fetch("/api/abrir-pasta-videos", {
         method: "POST",
@@ -722,7 +724,6 @@
       });
     } catch (e) {}
 
-    window.open("https://www.tiktok.com/tiktokstudio/upload", "_blank", "noopener,noreferrer");
     videoStatusMsg.className = "extract-status success";
     videoStatusMsg.textContent =
       "🚀 Legenda copiada + Pasta aberta com o vídeo marcado! Arraste o vídeo para a aba do TikTok e aperte Ctrl+V na legenda.";
@@ -734,6 +735,8 @@
         await navigator.clipboard.writeText(inputLegendaIA.value);
       } catch (e) {}
 
+      window.open("https://www.instagram.com/", "_blank", "noopener,noreferrer");
+
       try {
         await fetch("/api/abrir-pasta-videos", {
           method: "POST",
@@ -742,7 +745,6 @@
         });
       } catch (e) {}
 
-      window.open("https://www.instagram.com/", "_blank", "noopener,noreferrer");
       videoStatusMsg.className = "extract-status success";
       videoStatusMsg.textContent =
         "📸 Legenda copiada + Pasta aberta com o vídeo marcado! No Instagram, clique em '+ Criar' (menu esquerdo), arraste o vídeo e aperte Ctrl+V na legenda.";

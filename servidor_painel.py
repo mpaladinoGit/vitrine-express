@@ -4,6 +4,7 @@ import importlib
 import json
 import os
 import re
+import subprocess
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -542,12 +543,24 @@ class PainelHandler(SimpleHTTPRequestHandler):
 
         if parsed.path == "/api/abrir-pasta-videos":
             try:
+                import ctypes
                 arq_rel = (payload.get("arquivo") or "").replace("/", os.sep).strip(os.sep)
                 caminho_arq = os.path.join(DIRETORIO_BASE, arq_rel) if arq_rel else ""
+                ctypes.windll.user32.AllowSetForegroundWindow(-1)
                 if caminho_arq and os.path.exists(caminho_arq):
-                    subprocess.Popen(["explorer.exe", f"/select,{caminho_arq}"])
+                    subprocess.Popen(f'explorer.exe /select,"{caminho_arq}"', shell=True)
                 else:
-                    os.startfile(gerador_video.PASTA_VIDEOS)
+                    subprocess.Popen(f'explorer.exe "{gerador_video.PASTA_VIDEOS}"', shell=True)
+                subprocess.Popen(
+                    [
+                        "powershell",
+                        "-NoProfile",
+                        "-WindowStyle",
+                        "Hidden",
+                        "-Command",
+                        "Start-Sleep -Milliseconds 600; (New-Object -ComObject WScript.Shell).AppActivate('videos_gerados')",
+                    ]
+                )
                 return self._enviar_json(200, {"sucesso": True})
             except Exception as e:
                 return self._enviar_json(500, {"sucesso": False, "erro": str(e)})
