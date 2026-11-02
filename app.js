@@ -156,18 +156,18 @@
   });
 
   function renderizarAtalhosNumeros(produtos) {
-    const destaques = produtos.slice(0, 7);
+    const destaques = produtos.slice(0, 10);
     const botoesHtml = destaques
-      .map(
-        (p) =>
-          `<button type="button" class="num-pill" data-code="${p.codigo}">#${p.codigo}</button>`
-      )
+      .map((p) => {
+        const nomeCurto = (p.titulo || "").split(/\s+/).slice(0, 2).join(" ");
+        return `<button type="button" class="num-pill" data-code="${p.codigo}">
+          <img src="${p.imagem}" alt="" class="num-pill-img" />
+          <span>#${p.codigo} ${nomeCurto}</span>
+        </button>`;
+      })
       .join("");
 
-    quickNumbersEl.innerHTML = `
-      <span class="quick-numbers-title">🎬 Viu no vídeo? Clique no número:</span>
-      ${botoesHtml}
-    `;
+    quickNumbersEl.innerHTML = botoesHtml;
 
     quickNumbersEl.querySelectorAll(".num-pill").forEach((btn) => {
       btn.addEventListener("click", () => {
