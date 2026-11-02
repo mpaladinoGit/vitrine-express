@@ -3,6 +3,24 @@
 
 window.PRODUTOS_INICIAIS = [
   {
+    "id": 1793578015493,
+    "codigo": "13",
+    "titulo": "Celular Samsung Galaxy A17 Com Ia, 128gb, 4gb Ram, Câm De 50mp, Tela De 6.7\", Nfc, Ip54 - Preto",
+    "categoria": "eletronicos",
+    "categoriaNome": "Eletrônicos",
+    "plataforma": "mercadolivre",
+    "plataformaNome": "Mercado Livre",
+    "precoAntigo": 1144.12,
+    "precoAtual": 893.84,
+    "parcelamento": "Oferta selecionada na Vitrine Express",
+    "avaliacao": "4.9",
+    "vendidos": "Destaque da Vitrine",
+    "destaqueVideo": true,
+    "freteGratis": true,
+    "imagem": "https://http2.mlstatic.com/D_NQ_NP_868127-MLA118013296557_092026-P.webp",
+    "linkAfiliado": "https://meli.la/33aMCqD"
+  },
+  {
     "id": 1793577838294,
     "codigo": "12",
     "titulo": "Creatina Soldiers Nutrition em pó Sem sabor x 1kg",
