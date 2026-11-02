@@ -16,7 +16,7 @@ window.PRODUTOS_INICIAIS = [
     "avaliacao": "4.9",
     "vendidos": "Destaque da Vitrine",
     "destaqueVideo": true,
-    "freteGratis": true,
+    "freteGratis": false,
     "imagem": "https://http2.mlstatic.com/D_NQ_NP_748851-MLA114016338498_072026-P.webp",
     "linkAfiliado": "https://meli.la/2t1nCiS",
     "video": "videos_gerados/vitrine_express_cod_14_1793587503.mp4"
@@ -54,7 +54,7 @@ window.PRODUTOS_INICIAIS = [
     "avaliacao": "4.9",
     "vendidos": "Destaque da Vitrine",
     "destaqueVideo": true,
-    "freteGratis": true,
+    "freteGratis": false,
     "imagem": "https://http2.mlstatic.com/D_NQ_NP_605306-MLA119872143535_102026-P.webp",
     "linkAfiliado": "https://meli.la/2yKsbBq",
     "video": "videos_gerados/vitrine_express_cod_12_1793587521.mp4"
@@ -73,7 +73,7 @@ window.PRODUTOS_INICIAIS = [
     "avaliacao": "4.9",
     "vendidos": "Destaque da Vitrine",
     "destaqueVideo": true,
-    "freteGratis": true,
+    "freteGratis": false,
     "imagem": "https://http2.mlstatic.com/D_NQ_NP_753073-MLA110946060098_052026-P.webp",
     "linkAfiliado": "https://meli.la/2BJMBxc",
     "video": "videos_gerados/vitrine_express_cod_11_1793587530.mp4"
@@ -92,7 +92,7 @@ window.PRODUTOS_INICIAIS = [
     "avaliacao": "4.9",
     "vendidos": "Destaque da Vitrine",
     "destaqueVideo": true,
-    "freteGratis": true,
+    "freteGratis": false,
     "imagem": "https://http2.mlstatic.com/D_NQ_NP_812857-MLA109586548676_042026-P.webp",
     "linkAfiliado": "https://meli.la/1QM5CM3",
     "video": "videos_gerados/vitrine_express_cod_10_1793587539.mp4"

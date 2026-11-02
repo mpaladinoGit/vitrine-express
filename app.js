@@ -280,7 +280,7 @@
                 }
                 <div class="current-price-row">
                   <span class="current-price">${formatarMoeda(p.precoAtual)}</span>
-                  ${p.freteGratis ? `<span class="frete-tag">Frete Grátis*</span>` : ""}
+                  ${p.precoAtual >= 79 ? `<span class="frete-tag">Frete Grátis</span>` : `<span class="frete-tag">no Pix</span>`}
                 </div>
                 <div class="installments">${p.parcelamento || "Compra 100% segura no site oficial"}</div>
 
@@ -558,7 +558,7 @@
       avaliacao: "4.9",
       vendidos: "Destaque da Vitrine",
       destaqueVideo: true,
-      freteGratis: true,
+      freteGratis: precoAtual >= 79,
       imagem,
       linkAfiliado
     };
