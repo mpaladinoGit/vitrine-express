@@ -3,6 +3,24 @@
 
 window.PRODUTOS_INICIAIS = [
   {
+    "id": 1793577838294,
+    "codigo": "12",
+    "titulo": "Creatina Soldiers Nutrition em pó Sem sabor x 1kg",
+    "categoria": "casa",
+    "categoriaNome": "Casa & Cozinha",
+    "plataforma": "mercadolivre",
+    "plataformaNome": "Mercado Livre",
+    "precoAntigo": 88.19,
+    "precoAtual": 68.9,
+    "parcelamento": "Oferta selecionada na Vitrine Express",
+    "avaliacao": "4.9",
+    "vendidos": "Destaque da Vitrine",
+    "destaqueVideo": true,
+    "freteGratis": true,
+    "imagem": "https://http2.mlstatic.com/D_NQ_NP_605306-MLA119872143535_102026-P.webp",
+    "linkAfiliado": "https://meli.la/2yKsbBq"
+  },
+  {
     "id": 1793577492193,
     "codigo": "11",
     "titulo": "Kit 2 Refletor Super Led 400w Ip67 Holofote Bivolt Prova D'água Branco Frio 6500k Preto",
