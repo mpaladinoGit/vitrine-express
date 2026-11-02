@@ -597,12 +597,14 @@
   const btnDownloadVideo = document.getElementById("btnDownloadVideo");
   const btnAbrirPastaVideos = document.getElementById("btnAbrirPastaVideos");
   const btnPostarTikTok = document.getElementById("btnPostarTikTok");
+  const btnPostarInstagram = document.getElementById("btnPostarInstagram");
   const inputLegendaIA = document.getElementById("inputLegendaIA");
   const btnCopiarLegenda = document.getElementById("btnCopiarLegenda");
   let ultimoArquivoVideoGerado = "";
 
   async function abrirEstudioVideo(idProduto) {
     produtoVideoAtualId = idProduto;
+    const prodExistente = listaProdutos.find((item) => String(item.id) === String(idProduto));
     videoResultArea.style.display = "none";
     videoPreviewPlayer.pause();
     videoPreviewPlayer.removeAttribute("src");
@@ -620,8 +622,17 @@
       if (resp.ok && dados.sucesso) {
         inputRoteiroIA.value = dados.roteiro || "";
         inputLegendaIA.value = dados.legenda || "";
-        videoStatusMsg.className = "extract-status";
-        videoStatusMsg.textContent = "";
+        if (prodExistente && prodExistente.video) {
+          ultimoArquivoVideoGerado = prodExistente.video;
+          videoPreviewPlayer.src = "/" + prodExistente.video;
+          btnDownloadVideo.href = "/" + prodExistente.video;
+          videoResultArea.style.display = "grid";
+          videoStatusMsg.className = "extract-status success";
+          videoStatusMsg.textContent = "✅ Vídeo já pronto! Você pode postar direto abaixo ou gerar uma nova versão.";
+        } else {
+          videoStatusMsg.className = "extract-status";
+          videoStatusMsg.textContent = "";
+        }
       } else {
         videoStatusMsg.className = "extract-status warn";
         videoStatusMsg.textContent = "⚠️ Não foi possível preparar o roteiro.";
@@ -716,6 +727,27 @@
     videoStatusMsg.textContent =
       "🚀 Legenda copiada + Pasta aberta com o vídeo marcado! Arraste o vídeo para a aba do TikTok e aperte Ctrl+V na legenda.";
   });
+
+  if (btnPostarInstagram) {
+    btnPostarInstagram.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(inputLegendaIA.value);
+      } catch (e) {}
+
+      try {
+        await fetch("/api/abrir-pasta-videos", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ arquivo: ultimoArquivoVideoGerado })
+        });
+      } catch (e) {}
+
+      window.open("https://www.instagram.com/", "_blank", "noopener,noreferrer");
+      videoStatusMsg.className = "extract-status success";
+      videoStatusMsg.textContent =
+        "📸 Legenda copiada + Pasta aberta com o vídeo marcado! No Instagram, clique em '+ Criar' (menu esquerdo), arraste o vídeo e aperte Ctrl+V na legenda.";
+    });
+  }
 
   btnCopiarLegenda.addEventListener("click", () => {
     inputLegendaIA.select();

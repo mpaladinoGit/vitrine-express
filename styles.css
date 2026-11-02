@@ -1008,6 +1008,25 @@ body {
   filter: brightness(1.1);
 }
 
+.btn-instagram-publish {
+  width: 100%;
+  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+  color: #ffffff;
+  border: 2px solid #fde047;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(253, 29, 29, 0.3);
+  transition: transform 0.15s, filter 0.2s;
+}
+
+.btn-instagram-publish:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
 /* Modal Público de Vídeo + Botão Gigante de Compra (Celular / WhatsApp) */
 .modal-cliente-oferta {
   max-width: 430px;
