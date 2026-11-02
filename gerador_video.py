@@ -84,8 +84,8 @@ def montar_roteiro_padrao(produto):
         f"Olha esse achadinho que entrou em promoção no {plataforma_nome}! "
         f"{titulo_curto}. "
         f"{fala_preco}"
-        f"Para comprar no aplicativo oficial, acesse o site na tela, "
-        f"ou no nosso perfil, e digite o código {codigo}!"
+        f"Para garantir o seu com total segurança, acesse a nossa vitrine "
+        f"e clique no botão verde para abrir direto no {plataforma_nome}!"
     )
     return roteiro
 
@@ -108,8 +108,8 @@ def montar_legenda_padrao(produto):
         f"📦 {titulo}\n"
         f"{linha_preco}\n\n"
         f"👇 COMO COMPRAR NO SITE OFICIAL:\n"
-        f"1️⃣ Digite no navegador: {LINK_CURTO_LOJA}\n"
-        f"2️⃣ Digite o código #{codigo} na busca da loja!\n\n"
+        f"1️⃣ Acesse nossa vitrine: {LINK_CURTO_LOJA}\n"
+        f"2️⃣ Clique no botão verde da oferta para abrir direto no {plataforma_nome}!\n\n"
         f"🔒 Compra 100% segura direto no app oficial ({plataforma_nome}).\n\n"
         f"#achadinhos #ofertas #{plataforma_tag} #promocao #desconto #vitrineexpress #dicasdecompras"
     )
@@ -210,9 +210,9 @@ def criar_slide_cena(produto, img_produto, numero_cena):
         py = card_top + ((card_bottom - card_top) - img_copia.height) // 2
         base.paste(img_copia, (px, py))
 
-    # Badge de Código #XX
+    # Badge de Item #XX
     desenhar_retangulo_arredondado(draw, (66, card_top + 16, 235, card_top + 70), 12, fill=(15, 23, 42))
-    draw.text((84, card_top + 26), f"CÓD #{codigo}", font=f_tag, fill=(251, 191, 36))
+    draw.text((84, card_top + 26), f"ITEM #{codigo}", font=f_tag, fill=(251, 191, 36))
 
     # Badge de Desconto
     if desconto > 0:
@@ -246,21 +246,18 @@ def criar_slide_cena(produto, img_produto, numero_cena):
     )
 
     # Bloco Inferior GIGANTE ensinando onde entrar para comprar!
-    cor_box_cta = (255, 85, 0) if numero_cena != 2 else (217, 119, 6)
+    cor_box_cta = (22, 163, 74) if numero_cena == 3 else (255, 85, 0)
     desenhar_retangulo_arredondado(
         draw, (36, 995, W - 36, 1242), 22, fill=cor_box_cta, outline=(254, 240, 138), width=4
     )
-    centralizar_texto(draw, W, 1012, "ONDE COMPRAR? ACESSE O SITE:", f_sub, (255, 255, 255))
+    centralizar_texto(draw, W, 1012, "ACESSE NOSSA VITRINE OFICIAL:", f_sub, (255, 255, 255))
 
     # Caixa preta destacando o link curto fácil de digitar
     desenhar_retangulo_arredondado(draw, (66, 1048, W - 66, 1122), 14, fill=(15, 23, 42))
     centralizar_texto(draw, W, 1058, LINK_CURTO_LOJA, f_link_gigante, (251, 191, 36))
 
-    if numero_cena == 3:
-        centralizar_texto(draw, W, 1142, f"E DIGITE O CÓDIGO #{codigo} NA BUSCA!", f_tag, (255, 255, 255))
-        centralizar_texto(draw, W, 1185, "(Ou clique no perfil acima)", f_sub, (254, 240, 138))
-    else:
-        centralizar_texto(draw, W, 1138, f"E DIGITE O CÓDIGO: #{codigo}", f_codigo_gigante, (255, 255, 255))
+    centralizar_texto(draw, W, 1140, "CLIQUE NO BOTÃO VERDE DE COMPRA", f_tag, (255, 255, 255))
+    centralizar_texto(draw, W, 1185, f"E ABRA DIRETO NO {plataforma_nome}!", f_sub, (254, 240, 138))
 
     return base
 
