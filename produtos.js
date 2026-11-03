@@ -3,6 +3,24 @@
 
 window.PRODUTOS_INICIAIS = [
   {
+    "id": 1793715493101,
+    "codigo": "15",
+    "titulo": "Carregador 30w Turbo Para iPhone 8 X Xr 11 12 13 14 Pro Max Fonte Usb C Cor Branca Dtimp",
+    "categoria": "eletronicos",
+    "categoriaNome": "Eletrônicos",
+    "plataforma": "mercadolivre",
+    "plataformaNome": "Mercado Livre",
+    "precoAntigo": 56.32,
+    "precoAtual": 44,
+    "parcelamento": "Oferta selecionada na Vitrine Express",
+    "avaliacao": "4.9",
+    "vendidos": "Destaque da Vitrine",
+    "destaqueVideo": true,
+    "freteGratis": false,
+    "imagem": "https://http2.mlstatic.com/D_NQ_NP_826850-MLA116465697992_092026-P.webp",
+    "linkAfiliado": "https://meli.la/1ai5G8d"
+  },
+  {
     "id": 1793578958088,
     "codigo": "14",
     "titulo": "Balança Digital Corporal Bioimpedância Pholex Com Aplicativo Bluetooth Android e iOS Vidro Temperado Alta Capacidade Balança Academia Personal Banheiro Homologada Anatel",
