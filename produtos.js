@@ -3,6 +3,24 @@
 
 window.PRODUTOS_INICIAIS = [
   {
+    "id": 1793726152537,
+    "codigo": "16",
+    "titulo": "Robô aspirador Robot W90 varre aspira e passa pano 30w Wap cor preto",
+    "categoria": "ferramentas",
+    "categoriaNome": "Ferramentas & Auto",
+    "plataforma": "mercadolivre",
+    "plataformaNome": "Mercado Livre",
+    "precoAntigo": 383.87,
+    "precoAtual": 299.9,
+    "parcelamento": "Oferta selecionada na Vitrine Express",
+    "avaliacao": "4.9",
+    "vendidos": "Destaque da Vitrine",
+    "destaqueVideo": true,
+    "freteGratis": true,
+    "imagem": "https://http2.mlstatic.com/D_NQ_NP_748103-MLA99906601653_112025-P.webp",
+    "linkAfiliado": "https://meli.la/1vqMceW"
+  },
+  {
     "id": 1793715493101,
     "codigo": "15",
     "titulo": "Carregador 30w Turbo Para iPhone 8 X Xr 11 12 13 14 Pro Max Fonte Usb C Cor Branca Dtimp",
