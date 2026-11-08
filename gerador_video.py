@@ -212,7 +212,7 @@ def montar_legenda_padrao(produto):
     ganchos_legenda = [
         f"🔥 Queda de preço verificada hoje no {plataforma_nome}!",
         f"⚡ Campeão de vendas em promoção no {plataforma_nome}!",
-        f"🎯 Achadinho útil com super desconto no {plataforma_nome}!",
+        f"🎯 Oferta em destaque com super desconto no {plataforma_nome}!",
         f"🚨 Oferta relâmpago selecionada no {plataforma_nome}!",
     ]
     gancho = ganchos_legenda[_indice_variacao(produto) % len(ganchos_legenda)]
@@ -333,14 +333,14 @@ def criar_slide_cena(produto, galeria_imgs, numero_cena, total_cenas, tema):
         b = int(b1 + fator * (b2 - b1))
         draw.line([(0, y), (W, y)], fill=(r, g, b))
 
-    f_logo = obter_fonte(31, negrito=True)
-    f_sub = obter_fonte(20, negrito=True)
-    f_tag = obter_fonte(25, negrito=True)
-    f_titulo = obter_fonte(26, negrito=True)
-    f_legenda_dinamica = obter_fonte(25, negrito=True)
-    f_preco_ant = obter_fonte(25, negrito=False)
-    f_preco_atu = obter_fonte(54, negrito=True)
-    f_link_gigante = obter_fonte(36, negrito=True)
+    f_logo = obter_fonte(27, negrito=True)
+    f_sub = obter_fonte(18, negrito=True)
+    f_tag = obter_fonte(22, negrito=True)
+    f_titulo = obter_fonte(24, negrito=True)
+    f_legenda_dinamica = obter_fonte(22, negrito=True)
+    f_preco_ant = obter_fonte(22, negrito=False)
+    f_preco_atu = obter_fonte(46, negrito=True)
+    f_link_gigante = obter_fonte(32, negrito=True)
 
     plataforma_nome = (produto.get("plataformaNome") or "Mercado Livre").upper()
     codigo = str(produto.get("codigo") or "01")
@@ -350,100 +350,97 @@ def criar_slide_cena(produto, galeria_imgs, numero_cena, total_cenas, tema):
     if preco_antigo > preco_atual and preco_antigo > 0:
         desconto = int(round(((preco_antigo - preco_atual) / preco_antigo) * 100))
 
-    # Topo da Marca com a cor do Tema
+    # ZONA SEGURA CENTRAL (y = 175 até y = 1025):
+    # Deixa margem livre no topo e 255px livres embaixo para NUNCA cortar no feed do Instagram nem ficar atrás das legendas do Reels/TikTok!
     desenhar_retangulo_arredondado(
-        draw, (36, 30, W - 36, 114), 18, fill=tema["card_header"], outline=tema["accent"], width=3
+        draw, (42, 175, W - 42, 245), 16, fill=tema["card_header"], outline=tema["accent"], width=3
     )
-    centralizar_texto(draw, W, 40, "VITRINE EXPRESS", f_logo, (255, 255, 255))
-    centralizar_texto(draw, W, 79, f"CURADORIA OFICIAL • {plataforma_nome}", f_sub, tema["accent"])
+    centralizar_texto(draw, W, 182, "VITRINE EXPRESS", f_logo, (255, 255, 255))
+    centralizar_texto(draw, W, 215, f"OFERTA VERIFICADA • {plataforma_nome}", f_sub, tema["accent"])
 
     # Gancho superior muda a cada cena
     ganchos_cena = {
-        1: ("OLHA ESSE ACHADINHO EM OFERTA!", tema["tag_1"]),
+        1: ("SUPER OFERTA VERIFICADA HOJE!", tema["tag_1"]),
         2: ("QUALIDADE NOTA 4.9 ESTRELAS!", tema["tag_2"]),
         3: (f"DESCONTO ESPECIAL DE {desconto or 20}% HOJE!", (22, 163, 74)),
         4: ("ESTOQUE PROMOCIONAL LIMITADO!", tema["tag_1"]),
         5: ("GARANTA O SEU NO SITE OFICIAL:", (22, 163, 74)),
     }
     texto_topo, cor_topo = ganchos_cena.get(numero_cena, ganchos_cena[1])
-    desenhar_retangulo_arredondado(draw, (46, 128, W - 46, 184), 14, fill=cor_topo)
-    centralizar_texto(draw, W, 141, texto_topo, f_tag, (255, 255, 255))
+    desenhar_retangulo_arredondado(draw, (48, 255, W - 48, 301), 12, fill=cor_topo)
+    centralizar_texto(draw, W, 265, texto_topo, f_tag, (255, 255, 255))
 
-    # Quadro da Foto do Produto (Cenas 1 a 5 variam entre foto principal, ângulos extras, zoom e visão dupla!)
-    card_top = 198
-    card_bottom = 668
+    # Quadro da Foto do Produto (y = 311 até y = 665)
+    card_top = 311
+    card_bottom = 665
     desenhar_retangulo_arredondado(
-        draw, (42, card_top, W - 42, card_bottom), 24, fill=(255, 255, 255), outline=tema["accent"], width=3
+        draw, (42, card_top, W - 42, card_bottom), 22, fill=(255, 255, 255), outline=tema["accent"], width=3
     )
 
     img_principal = galeria_imgs[0]
     img_secundaria = galeria_imgs[min(1, len(galeria_imgs) - 1)]
     img_terciaria = galeria_imgs[min(2, len(galeria_imgs) - 1)]
+    area_util_h = (card_bottom - card_top) - 54
 
     if numero_cena == 1:
-        # Cena 1: Foto Principal limpa em destaque
         img_c = img_principal.copy()
-        img_c.thumbnail((540, 410), Image.Resampling.LANCZOS)
+        img_c.thumbnail((460, area_util_h - 10), Image.Resampling.LANCZOS)
         px = (W - img_c.width) // 2
-        py = card_top + ((card_bottom - card_top) - img_c.height) // 2
+        py = card_top + 8 + (area_util_h - img_c.height) // 2
         base.paste(img_c, (px, py))
 
     elif numero_cena == 2:
-        # Cena 2: Ângulo 2 (ou Super Zoom no detalhe central da foto principal)
         if len(galeria_imgs) > 1:
             img_c = img_secundaria.copy()
-            img_c.thumbnail((560, 420), Image.Resampling.LANCZOS)
+            img_c.thumbnail((470, area_util_h - 6), Image.Resampling.LANCZOS)
         else:
             w_o, h_o = img_principal.size
-            crop_box = (int(w_o * 0.1), int(h_o * 0.1), int(w_o * 0.9), int(h_o * 0.9))
+            crop_box = (int(w_o * 0.08), int(h_o * 0.08), int(w_o * 0.92), int(h_o * 0.92))
             img_c = img_principal.crop(crop_box)
-            img_c.thumbnail((560, 420), Image.Resampling.LANCZOS)
+            img_c.thumbnail((470, area_util_h - 6), Image.Resampling.LANCZOS)
         px = (W - img_c.width) // 2
-        py = card_top + ((card_bottom - card_top) - img_c.height) // 2
+        py = card_top + 8 + (area_util_h - img_c.height) // 2
         base.paste(img_c, (px, py))
 
     elif numero_cena == 3:
-        # Cena 3: Visão Dupla Lado a Lado (Vitrine Comparativa!)
         img_esq = img_principal.copy()
-        img_esq.thumbnail((285, 360), Image.Resampling.LANCZOS)
+        img_esq.thumbnail((250, area_util_h - 14), Image.Resampling.LANCZOS)
         img_dir = (img_terciaria if len(galeria_imgs) > 2 else img_secundaria).copy()
-        img_dir.thumbnail((285, 360), Image.Resampling.LANCZOS)
+        img_dir.thumbnail((250, area_util_h - 14), Image.Resampling.LANCZOS)
 
-        y_esq = card_top + ((card_bottom - card_top) - img_esq.height) // 2
-        y_dir = card_top + ((card_bottom - card_top) - img_dir.height) // 2
-        base.paste(img_esq, (68, y_esq))
-        base.paste(img_dir, (W - 68 - img_dir.width, y_dir))
-        draw.line([(W // 2, card_top + 30), (W // 2, card_bottom - 30)], fill=(226, 232, 240), width=3)
+        y_esq = card_top + 8 + (area_util_h - img_esq.height) // 2
+        y_dir = card_top + 8 + (area_util_h - img_dir.height) // 2
+        base.paste(img_esq, (72, y_esq))
+        base.paste(img_dir, (W - 72 - img_dir.width, y_dir))
+        draw.line([(W // 2, card_top + 20), (W // 2, card_bottom - 60)], fill=(226, 232, 240), width=3)
 
     elif numero_cena == 4:
-        # Cena 4: Foto com Super Zoom Dinâmico + Selo de Aprovação
         img_c = (img_terciaria if len(galeria_imgs) > 2 else img_principal).copy()
-        img_c.thumbnail((580, 430), Image.Resampling.LANCZOS)
+        img_c.thumbnail((480, area_util_h - 6), Image.Resampling.LANCZOS)
         px = (W - img_c.width) // 2
-        py = card_top + ((card_bottom - card_top) - img_c.height) // 2
+        py = card_top + 8 + (area_util_h - img_c.height) // 2
         base.paste(img_c, (px, py))
 
     else:
-        # Cena 5: Fechamento de Compra com Foto Principal em Destaque Máximo
         img_c = img_principal.copy()
-        img_c.thumbnail((550, 415), Image.Resampling.LANCZOS)
+        img_c.thumbnail((465, area_util_h - 8), Image.Resampling.LANCZOS)
         px = (W - img_c.width) // 2
-        py = card_top + ((card_bottom - card_top) - img_c.height) // 2
+        py = card_top + 8 + (area_util_h - img_c.height) // 2
         base.paste(img_c, (px, py))
 
     # Etiqueta ITEM #XX
-    desenhar_retangulo_arredondado(draw, (60, card_top + 14, 225, card_top + 66), 12, fill=(15, 23, 42))
-    draw.text((78, card_top + 23), f"ITEM #{codigo}", font=f_tag, fill=tema["accent"])
+    desenhar_retangulo_arredondado(draw, (58, card_top + 12, 205, card_top + 56), 10, fill=(15, 23, 42))
+    draw.text((74, card_top + 19), f"ITEM #{codigo}", font=f_tag, fill=tema["accent"])
 
     # Etiqueta de Desconto ou Nota
     if numero_cena in (2, 4):
-        desenhar_retangulo_arredondado(draw, (W - 265, card_top + 14, W - 60, card_top + 66), 12, fill=(245, 158, 11))
-        draw.text((W - 246, card_top + 23), "NOTA 4.9 / 5.0", font=f_tag, fill=(15, 23, 42))
+        desenhar_retangulo_arredondado(draw, (W - 245, card_top + 12, W - 58, card_top + 56), 10, fill=(245, 158, 11))
+        draw.text((W - 228, card_top + 19), "NOTA 4.9 / 5.0", font=f_tag, fill=(15, 23, 42))
     elif desconto > 0:
-        desenhar_retangulo_arredondado(draw, (W - 230, card_top + 14, W - 60, card_top + 66), 12, fill=(22, 163, 74))
-        draw.text((W - 210, card_top + 23), f"-{desconto}% OFF", font=f_tag, fill=(255, 255, 255))
+        desenhar_retangulo_arredondado(draw, (W - 210, card_top + 12, W - 58, card_top + 56), 10, fill=(22, 163, 74))
+        draw.text((W - 194, card_top + 19), f"-{desconto}% OFF", font=f_tag, fill=(255, 255, 255))
 
-    # Faixa de Legenda Dinâmica (Estilo CapCut / TikTok) mudando a cada cena!
+    # Faixa de Legenda Dinâmica dentro do quadro da foto
     legendas_curtas = {
         1: "Oferta selecionada com menor preço!",
         2: "Produto bem avaliado e campeão de pedidos",
@@ -453,60 +450,53 @@ def criar_slide_cena(produto, galeria_imgs, numero_cena, total_cenas, tema):
     }
     frase_cena = legendas_curtas.get(numero_cena, legendas_curtas[1])
     desenhar_retangulo_arredondado(
-        draw, (52, card_bottom - 58, W - 52, card_bottom - 10), 12, fill=(15, 23, 42)
+        draw, (52, card_bottom - 50, W - 52, card_bottom - 8), 10, fill=(15, 23, 42)
     )
-    centralizar_texto(draw, W, card_bottom - 49, frase_cena, f_legenda_dinamica, (254, 240, 138))
+    centralizar_texto(draw, W, card_bottom - 42, frase_cena, f_legenda_dinamica, (254, 240, 138))
 
-    # Título do Produto
+    # Título do Produto (y = 673..728)
     titulo = (produto.get("titulo") or "Produto em Oferta").strip()
-    linhas_titulo = textwrap.wrap(titulo, width=38)[:2]
-    y_t = 674
+    linhas_titulo = textwrap.wrap(titulo, width=40)[:2]
+    y_t = 673
     for linha in linhas_titulo:
         centralizar_texto(draw, W, y_t, linha, f_titulo, (255, 255, 255))
-        y_t += 32
+        y_t += 29
 
-    # Bloco de Preço (compactado para caber junto com o CTA dentro do quadrado central 1:1 do Instagram!)
+    # Bloco de Preço (y = 736..866)
     desenhar_retangulo_arredondado(
-        draw, (42, 744, W - 42, 886), 18, fill=tema["price_box"], outline=tema["price_color"], width=2
+        draw, (42, 736, W - 42, 866), 18, fill=tema["price_box"], outline=tema["price_color"], width=2
     )
     if preco_antigo > preco_atual:
         txt_ant = f"De {formatar_moeda_br(preco_antigo)}"
         bbox_a = draw.textbbox((0, 0), txt_ant, font=f_preco_ant)
         tw_a = bbox_a[2] - bbox_a[0]
         x_a = (W - tw_a) // 2
-        draw.text((x_a, 752), txt_ant, font=f_preco_ant, fill=(203, 213, 225))
-        draw.line([(x_a, 768), (x_a + tw_a, 768)], fill=(239, 68, 68), width=3)
+        draw.text((x_a, 742), txt_ant, font=f_preco_ant, fill=(203, 213, 225))
+        draw.line([(x_a, 756), (x_a + tw_a, 756)], fill=(239, 68, 68), width=3)
 
     txt_atu = f"Por {formatar_moeda_br(preco_atual)}"
-    centralizar_texto(draw, W, 778, txt_atu, f_preco_atu, tema["price_color"])
+    centralizar_texto(draw, W, 764, txt_atu, f_preco_atu, tema["price_color"])
     condicao_txt = (
         f"Frete Grátis • Compra Segura no {produto.get('plataformaNome', 'Site Oficial')}"
         if preco_atual >= 79
         else f"no Pix • Compra 100% Segura no {produto.get('plataformaNome', 'Site Oficial')}"
     )
-    centralizar_texto(draw, W, 852, condicao_txt, f_sub, (241, 245, 249))
+    centralizar_texto(draw, W, 832, condicao_txt, f_sub, (241, 245, 249))
 
-    # Faixa de Chamada para Ação DENTRO da Zona Segura 1:1 (y=896..994 — nunca corta no Instagram!)
+    # Bloco Único de Como Comprar com Margem Ampla embaixo (y = 876..1022 — NUNCA CORTA EMBAIXO!)
     cor_box_cta = tema["cta_alt"] if numero_cena in (3, 5) else tema["cta_bg"]
     desenhar_retangulo_arredondado(
-        draw, (42, 896, W - 42, 994), 16, fill=cor_box_cta, outline=(254, 240, 138), width=3
+        draw, (42, 876, W - 42, 1022), 18, fill=cor_box_cta, outline=(254, 240, 138), width=3
     )
-    centralizar_texto(draw, W, 908, "COMO COMPRAR? CLIQUE EM @vitrineexpress.top", f_sub, (255, 255, 255))
-    centralizar_texto(draw, W, 944, "E TOQUE NO LINK AZUL DO PERFIL!", f_tag, (254, 240, 138))
+    centralizar_texto(draw, W, 886, "ONDE COMPRAR? CLIQUE EM @vitrineexpress.top", f_sub, (255, 255, 255))
+    desenhar_retangulo_arredondado(draw, (68, 916, W - 68, 976), 12, fill=(15, 23, 42))
+    centralizar_texto(draw, W, 924, f"LINK NO PERFIL: {LINK_CURTO_LOJA}", f_link_gigante, (251, 191, 36))
+    centralizar_texto(draw, W, 986, f"CLIQUE NO BOTÃO VERDE -> {plataforma_nome}!", f_sub, (254, 240, 138))
 
-    # Bloco complementar inferior para visualização 9:16 (TikTok / Reels tela cheia)
-    desenhar_retangulo_arredondado(
-        draw, (42, 1012, W - 42, 1220), 20, fill=(15, 23, 42), outline=tema["accent"], width=2
-    )
-    centralizar_texto(draw, W, 1028, "OU ACESSE DIRETO NO NAVEGADOR:", f_sub, (203, 213, 225))
-    desenhar_retangulo_arredondado(draw, (68, 1064, W - 68, 1134), 12, fill=tema["card_header"])
-    centralizar_texto(draw, W, 1074, LINK_CURTO_LOJA, f_link_gigante, (251, 191, 36))
-    centralizar_texto(draw, W, 1152, f"CLIQUE NO BOTÃO VERDE ➔ {plataforma_nome}", f_sub, (74, 222, 128))
-
-    # Barra de Progresso no rodapé do vídeo
-    prog_w = int(((W - 72) * numero_cena) / max(1, total_cenas))
-    desenhar_retangulo_arredondado(draw, (36, 1242, W - 36, 1256), 6, fill=(30, 41, 59))
-    desenhar_retangulo_arredondado(draw, (36, 1242, 36 + prog_w, 1256), 6, fill=tema["accent"])
+    # Barra de Progresso logo abaixo do bloco (y = 1034..1046, deixando 234px livres no rodapé!)
+    prog_w = int(((W - 84) * numero_cena) / max(1, total_cenas))
+    desenhar_retangulo_arredondado(draw, (42, 1034, W - 42, 1046), 6, fill=(30, 41, 59))
+    desenhar_retangulo_arredondado(draw, (42, 1034, 42 + prog_w, 1046), 6, fill=tema["accent"])
 
     return base
 

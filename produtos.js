@@ -19,7 +19,7 @@ window.PRODUTOS_INICIAIS = [
     "freteGratis": true,
     "imagem": "https://http2.mlstatic.com/D_NQ_NP_631074-MLA99452011506_112025-P.webp",
     "linkAfiliado": "https://meli.la/1zFfThT",
-    "video": "videos_gerados/vitrine_express_cod_17_1794137049.mp4"
+    "video": "videos_gerados/vitrine_express_cod_17_1794138364.mp4"
   },
   {
     "id": 1793726152537,
@@ -38,7 +38,7 @@ window.PRODUTOS_INICIAIS = [
     "freteGratis": true,
     "imagem": "https://http2.mlstatic.com/D_NQ_NP_748103-MLA99906601653_112025-P.webp",
     "linkAfiliado": "https://meli.la/1vqMceW",
-    "video": "videos_gerados/vitrine_express_cod_16_1793726179.mp4"
+    "video": "videos_gerados/vitrine_express_cod_16_1794138369.mp4"
   },
   {
     "id": 1793715493101,
@@ -57,7 +57,7 @@ window.PRODUTOS_INICIAIS = [
     "freteGratis": false,
     "imagem": "https://http2.mlstatic.com/D_NQ_NP_826850-MLA116465697992_092026-P.webp",
     "linkAfiliado": "https://meli.la/1ai5G8d",
-    "video": "videos_gerados/vitrine_express_cod_15_1793715514.mp4"
+    "video": "videos_gerados/vitrine_express_cod_15_1794138374.mp4"
   },
   {
     "id": 1793578958088,
@@ -76,7 +76,7 @@ window.PRODUTOS_INICIAIS = [
     "freteGratis": false,
     "imagem": "https://http2.mlstatic.com/D_NQ_NP_748851-MLA114016338498_072026-P.webp",
     "linkAfiliado": "https://meli.la/2t1nCiS",
-    "video": "videos_gerados/vitrine_express_cod_14_1793634395.mp4"
+    "video": "videos_gerados/vitrine_express_cod_14_1794138379.mp4"
   },
   {
     "id": 1793578015493,
@@ -95,7 +95,7 @@ window.PRODUTOS_INICIAIS = [
     "freteGratis": true,
     "imagem": "https://http2.mlstatic.com/D_NQ_NP_868127-MLA118013296557_092026-P.webp",
     "linkAfiliado": "https://meli.la/33aMCqD",
-    "video": "videos_gerados/vitrine_express_cod_13_1793634405.mp4"
+    "video": "videos_gerados/vitrine_express_cod_13_1794138385.mp4"
   },
   {
     "id": 1793577838294,
@@ -114,7 +114,7 @@ window.PRODUTOS_INICIAIS = [
     "freteGratis": false,
     "imagem": "https://http2.mlstatic.com/D_NQ_NP_605306-MLA119872143535_102026-P.webp",
     "linkAfiliado": "https://meli.la/2yKsbBq",
-    "video": "videos_gerados/vitrine_express_cod_12_1793634414.mp4"
+    "video": "videos_gerados/vitrine_express_cod_12_1794138391.mp4"
   },
   {
     "id": 1793577492193,
@@ -133,7 +133,7 @@ window.PRODUTOS_INICIAIS = [
     "freteGratis": false,
     "imagem": "https://http2.mlstatic.com/D_NQ_NP_753073-MLA110946060098_052026-P.webp",
     "linkAfiliado": "https://meli.la/2BJMBxc",
-    "video": "videos_gerados/vitrine_express_cod_11_1793634423.mp4"
+    "video": "videos_gerados/vitrine_express_cod_11_1794138399.mp4"
   },
   {
     "id": 1793572543769,
@@ -152,6 +152,6 @@ window.PRODUTOS_INICIAIS = [
     "freteGratis": false,
     "imagem": "https://http2.mlstatic.com/D_NQ_NP_812857-MLA109586548676_042026-P.webp",
     "linkAfiliado": "https://meli.la/1QM5CM3",
-    "video": "videos_gerados/vitrine_express_cod_10_1793634433.mp4"
+    "video": "videos_gerados/vitrine_express_cod_10_1794138403.mp4"
   }
 ];
