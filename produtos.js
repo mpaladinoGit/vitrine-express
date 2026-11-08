@@ -3,6 +3,24 @@
 
 window.PRODUTOS_INICIAIS = [
   {
+    "id": 1794137041581,
+    "codigo": "17",
+    "titulo": "Amplificador Taramps TS 800x4 800W 4 Canais para Som Automotivo",
+    "categoria": "ferramentas",
+    "categoriaNome": "Ferramentas & Auto",
+    "plataforma": "mercadolivre",
+    "plataformaNome": "Mercado Livre",
+    "precoAntigo": 325.82,
+    "precoAtual": 254.55,
+    "parcelamento": "Oferta selecionada na Vitrine Express",
+    "avaliacao": "4.9",
+    "vendidos": "Destaque da Vitrine",
+    "destaqueVideo": true,
+    "freteGratis": true,
+    "imagem": "https://http2.mlstatic.com/D_NQ_NP_631074-MLA99452011506_112025-P.webp",
+    "linkAfiliado": "https://meli.la/1zFfThT"
+  },
+  {
     "id": 1793726152537,
     "codigo": "16",
     "titulo": "Robô aspirador Robot W90 varre aspira e passa pano 30w Wap cor preto",
