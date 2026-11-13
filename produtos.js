@@ -3,6 +3,24 @@
 
 window.PRODUTOS_INICIAIS = [
   {
+    "id": 1794564546106,
+    "codigo": "18",
+    "titulo": "Ar condicionado Split Hi Wall Gree G-Side Auto Inverter 12.000 Btus Frio 220V R-32 - R$ 2.339",
+    "categoria": "casa",
+    "categoriaNome": "Casa & Cozinha",
+    "plataforma": "mercadolivre",
+    "plataformaNome": "Mercado Livre",
+    "precoAntigo": 3915.65,
+    "precoAtual": 3059.1,
+    "parcelamento": "Oferta selecionada na Vitrine Express",
+    "avaliacao": "4.9",
+    "vendidos": "Destaque da Vitrine",
+    "destaqueVideo": true,
+    "freteGratis": true,
+    "imagem": "https://http2.mlstatic.com/D_NQ_NP_681708-MLA113589584119_062026-P.webp",
+    "linkAfiliado": "https://meli.la/2MJyMF4"
+  },
+  {
     "id": 1794137041581,
     "codigo": "17",
     "titulo": "Amplificador Taramps TS 800x4 800W 4 Canais para Som Automotivo",
